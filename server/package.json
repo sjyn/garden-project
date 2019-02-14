@@ -1,0 +1,12 @@
+{
+  "name": "garden-server",
+  "version": "1.0.0",
+  "description": "my garden server",
+  "main": "index.js",
+  "repository": "https://github.com/sjyn/garden-project",
+  "author": "Steven Rosendahl",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

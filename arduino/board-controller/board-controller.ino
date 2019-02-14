@@ -6,68 +6,49 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
+#include <ESP8266HTTPClient.h>
 #include "secrets.h"
 
 const char* ssid     = GARDEN_SSID;
 const char* password = GARDEN_PASSWORD;
 
-const char* host = "192.168.1.1";
-const uint16_t port = 3000;
+const String host = "192.168.86.34";
+const uint16_t port = 8432;
 
-ESP8266WiFiMulti WiFiMulti;
-
-void setup() {
+void setup () {
+ 
   Serial.begin(115200);
-
-  // We start by connecting to a WiFi network
-  WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid, password);
-
-  Serial.println();
-  Serial.println();
-  Serial.print("Wait for WiFi... ");
-
-  while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
-    delay(500);
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+ 
+    delay(1000);
+    Serial.print("Connecting..");
+ 
   }
-
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-
-  delay(500);
+ 
 }
-
-
+ 
 void loop() {
-  Serial.print("connecting to ");
-  Serial.print(host);
-  Serial.print(':');
-  Serial.println(port);
-
-  // Use WiFiClient class to create TCP connections
-  WiFiClient client;
-
-  if (!client.connect(host, port)) {
-    Serial.println("connection failed");
-    Serial.println("wait 5 sec...");
-    delay(5000);
-    return;
+ 
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+ 
+    HTTPClient http;  //Declare an object of class HTTPClient
+ 
+    http.begin("http://" + host + ":" + port + "/");  //Specify request destination
+    int httpCode = http.GET();                                                                  //Send the request
+ 
+    if (httpCode > 0) { //Check the returning code
+ 
+      String payload = http.getString();   //Get the request response payload
+      Serial.println(payload);                     //Print the response payload
+ 
+    }
+ 
+    http.end();   //Close connection
+ 
   }
-
-  // This will send the request to the server
-  client.println("hello from ESP8266");
-
-  //read back one line from server
-  Serial.println("receiving from remote server");
-  String line = client.readStringUntil('\r');
-  Serial.println(line);
-
-  Serial.println("closing connection");
-  client.stop();
-
-  Serial.println("wait 5 sec...");
-  delay(5000);
+ 
+  delay(5000);    //Send a request every 30 seconds
+ 
 }
