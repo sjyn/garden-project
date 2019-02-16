@@ -1,54 +1,61 @@
-/*
-    This sketch sends a string to a TCP server, and prints a one-line response.
-    You must run a TCP server in your local network.
-    For example, on Linux you can use this command: nc -v -l 3000
-*/
-
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 #include "secrets.h"
 
-const char* ssid     = GARDEN_SSID;
+const int TOGGLE_PIN = D2; 
+const char* ssid = GARDEN_SSID;
 const char* password = GARDEN_PASSWORD;
 
 const String host = "192.168.86.34";
 const uint16_t port = 8432;
+int currentRead = LOW;
 
 void setup () {
- 
+  pinMode(TOGGLE_PIN, OUTPUT);
   Serial.begin(115200);
   WiFi.begin(ssid, password);
  
   while (WiFi.status() != WL_CONNECTED) {
- 
     delay(1000);
     Serial.print("Connecting..");
- 
   }
- 
 }
  
 void loop() {
- 
-  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
- 
-    HTTPClient http;  //Declare an object of class HTTPClient
- 
-    http.begin("http://" + host + ":" + port + "/");  //Specify request destination
-    int httpCode = http.GET();                                                                  //Send the request
- 
-    if (httpCode > 0) { //Check the returning code
- 
-      String payload = http.getString();   //Get the request response payload
-      Serial.println(payload);                     //Print the response payload
- 
-    }
- 
-    http.end();   //Close connection
- 
+  makeRequest();
+//  toggleLED();
+    
+  /* Toggle the LED */
+  digitalWrite(TOGGLE_PIN, currentRead);
+//  ESP.deepSleep(5000);
+}
+
+void toggleLED() {
+  if (currentRead == LOW) {
+    Serial.println("Writing HIGH");
+    currentRead = HIGH;
+  } else {
+    Serial.println("Writing LOW");
+    currentRead = LOW;
   }
- 
-  delay(5000);    //Send a request every 30 seconds
- 
+}
+
+void makeRequest() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin("http://" + host + ":" + port + "/requests");
+    int httpCode = http.GET();
+    if (httpCode > 0) {
+      String payload = http.getString();
+      Serial.println(payload);
+      if (payload.equals("on")) {
+        currentRead = HIGH;
+      } else {
+        currentRead = LOW;
+      }
+      delay(5000);
+    }
+    http.end(); 
+  }
 }
