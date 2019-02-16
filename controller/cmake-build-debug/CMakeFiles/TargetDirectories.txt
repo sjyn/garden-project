@@ -1,0 +1,11 @@
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_REBUILD_PROJECT_INDEX.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_UPDATE_ALL.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOADFS.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_BUILD.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_PROGRAM.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_TEST.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_CLEAN.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/controller.dir
+/Users/sjyn/Documents/garden-project/controller/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOAD.dir
