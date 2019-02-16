@@ -21,13 +21,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec922180-b3d3-40f1-af0b-2568113a9075" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../arduino/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/board-controller/board-controller.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/pump-controllers.fzz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/sketch_feb14b/sketch_feb14b.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/sleep-test/sleep-test.ino" beforeDir="false" />
-    </list>
+    <list default="true" id="ec922180-b3d3-40f1-af0b-2568113a9075" name="Default" comment="" />
     <ignored path="platformio.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -79,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="195">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -272,15 +266,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1435919971910</updated>
-      <workItem from="1550287684073" duration="4410000" />
+      <workItem from="1550287684073" duration="4698000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4410000" />
+    <option name="totallyTimeSpent" value="4698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Structure" side_tool="true" />
@@ -377,8 +372,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="195">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
