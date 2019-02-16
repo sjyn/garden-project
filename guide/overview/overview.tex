@@ -1,0 +1,54 @@
+\section{Overview}
+
+This project is a WiFi powered pump for a drip irrigation system for a home garden.
+This guide includes all the necessary steps and instructions for setting it up yourself, as well as descriptions of how I went about finding all the information I used.
+My background is in software development, so this project is a completely new experience for me.
+
+\subsection{Parts}
+It took me a while to figure out all the parts I needed for this project.
+Here's the list, to the best of my ability, of parts that you'll need for the arduino powered circuit.
+
+\subsubsection*{For the Circuit}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item 1 x LinkNode D1 board\footnote{You can use any ESP8266 board for this project, but I found LinkNode boards to be the easier to hit the ground running with.} by LinkSprite
+        \item 2 x 3.3v Solar Panel
+        \item 2 x 1N4007 High Voltage, High Current Rated Diode
+        \item 2 x TP4056 Battery Charger
+        \item 2 x 18560 Rechargable Lithium Ion Battery (and holder)
+        \item 2 x 0.9V-5V to 5V USB DC-DC Booster
+        \item 1 x KY-019 5V One Channel Relay
+        \item 1 x USB-A to Micro USB cable
+        \item 1 x USB-A to leads cable\footnote{Essentially, you just need a USB-A cable with the opposite end stripped off.}.
+        \item 1 x 5V water pump with leads exposed\footnote{These pumps are the same ones that are typically used in home fish tanks.}
+        \item Airline aquarium tubing\footnote{You'll need to make sure that the tube's diameter matches the pump's diameter.}
+        \item 1 x Computer with internet connection and the ability to host a webserver\footnote{I'm running requests through a Digital Ocean droplet, but something as simple as a Raspberry Pi 1 should do the trick}
+        \item Wires
+    \end{itemize}
+\end{multicols}
+
+The tricky part of picking your supplies is choosing the right pump and tubing.
+I chose a 5V pump because the garden beds I'm creating are relatively small, so a pump of that power \textit{should} be able to push the water all the way through the system.
+
+Additionally, you'll find it hard to find drip irrigation tubing that fits a small pump. 
+Drip irrigation tubing usually comes in 1/4in to 1/2in sizes, but if you've got a smally pump you'll have to ``roll your own" tubing so to speak.
+You can do this by making small slits in the tubing at regular intervals; you don't want holes that are too large as that will prevent the water from passing all the way through the tubing.
+Conversely, you don't want to small of a slit because that will prevent the water from coming out at that particular spot.
+
+If you want or need a larger pump/tubing then you can halve the number of \textbf{solar panels}, \textbf{diodes}, \textbf{batteries}, \textbf{voltage boosters}, and \textbf{battery chargers}, and you can remove the \textbf{USB cable with leads}, but you'll need to be able to supply power to the pump externally, and in a way where you can still pass the power supply through the relay.
+
+\subsubsection*{For the Garden Beds}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{multicols}
+
+\subsection{Network Overview}
+Overall, the connections are fairly simple.
+The ESP8266 boards will need to have access to a router, as well as the credientials necessary for accessing the network.
+Once an hour, the boards will wake up and make a request to the webserver asking for any commands that are waiting there.
+If the webserver has any, it will reply with the last command that was given to it.
+The supported commands are \texttt{on}, which tells the arduino to turn on the pump for 5 minutes, and \texttt{logs}, which tells the arduino to send back the logs stored on the board. Any other command will be ignored, and the arduino will shut down again once it reaches anything other than \texttt{on} or \texttt{logs}.
+
+On the opposite side, a user will be able to go to the URL of the webserver, and will be able to issue commands from a simple UI. The commands are sent to the server and stored until the arduino asks for them.
