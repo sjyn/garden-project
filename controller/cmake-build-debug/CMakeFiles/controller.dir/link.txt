@@ -1,1 +1,0 @@
-/Users/sjyn/.platformio/packages/toolchain-xtensa/bin/xtensa-lx106-elf-g++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/controller.dir/src/connector/connector.cpp.o CMakeFiles/controller.dir/src/main.cpp.o CMakeFiles/controller.dir/src/printer/printer.cpp.o  -o controller 
