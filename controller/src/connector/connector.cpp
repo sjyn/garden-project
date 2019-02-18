@@ -21,21 +21,21 @@ void Connector::checkMessages() {
     if (WiFi.status() == WL_CONNECTED) {
         registerBoard();
         while (true) {
-            String endpoint = getEndpointURL(ENDPOINT_MESSAGES);
+            String endpoint = getEndpointURL(ENDPOINT_MESSAGES + "/" + BOARD_ID);
             HTTPClient *http = getRequestClient(endpoint);
-            int httpCode = http->GET();
-            if (httpCode == 200) {
-                String payload = http->getString();
-                printer->print("Received Payload ");
-                printer->println(payload);
-                if (payload.equals(COMMAND_TURN_ON)) {
-                    turnOnHandler();
-                } else if (payload.equals(COMMAND_SEND_LOGS)) {
-                    this->flushLog();
-                } else {
-                    break;
-                }
+            http->GET();
+//            if (httpCode == 200) {
+            String payload = http->getString();
+            printer->print("Received Payload ");
+            printer->println(payload);
+            if (payload.equals(COMMAND_TURN_ON)) {
+                turnOnHandler();
+            } else if (payload.equals(COMMAND_SEND_LOGS)) {
+                this->flushLog();
+            } else {
+                break;
             }
+//            }
             http->end();
             delete http;
         }
@@ -79,12 +79,12 @@ void Connector::deregisterBoard() {
 }
 
 String Connector::getEndpointURL(String endpoint) {
-    return "http://192.168.86.46:8432" + endpoint;
+    return "http://192.168.86.46:8432" + endpoint + "/";
 }
 
 HTTPClient *Connector::getRequestClient(String &endpoint) {
     auto *http = new HTTPClient();
-    http->addHeader("Content-Type", "text/html");
     http->begin(endpoint);
+    http->addHeader("content-type", "text/plain");
     return http;
 }

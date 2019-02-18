@@ -14,7 +14,7 @@ function getNiceDate() {
 }
 
 function stripMessageDate(messageWithDate) {
-  return messageWithDate.replace(/\[[. ]*\]/, '');
+  return messageWithDate.replace(/\[.*\]:/, '').trim();
 }
 
 module.exports.getNiceDate = getNiceDate;

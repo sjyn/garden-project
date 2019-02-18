@@ -20,5 +20,6 @@ void setup() {
 
 void loop() {
     connector->checkMessages();
-    ESP.deepSleep(sleepTime);
+    delay(2000);
+//    ESP.deepSleep(sleepTime);
 }

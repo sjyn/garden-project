@@ -9,20 +9,10 @@ class AppRouter {
     this.requestStack = new requestStack.RequestStack();
     this.logManager = new logManager.LogManager();
     this.app = express();
-    this.app.use(bodyParser.text({type: 'text/html'}));
-    this.app.use(bodyParser.json({type: 'application/json'}));
+    this.app.use(bodyParser.text());
+    this.app.use(bodyParser.json());
     this.app.use(this.corsHandler.bind(this));
     this.setupRoutes();
-
-    // @TODO -- remove this
-    this.requestStack.registerBoard('latios');
-    this.logManager.registerBoard('latios');
-    this.requestStack.registerBoard('latias');
-    this.logManager.registerBoard('latias');
-    this.requestStack.registerBoard('bulbasaur');
-    this.logManager.registerBoard('bulbasaur');
-    this.logManager.appendLogsForBoard('latias','hello world');
-    this.logManager.appendLogsForBoard('latios','goodbye mars');
   }
 
   corsHandler(req, res, next) {
@@ -117,9 +107,9 @@ class AppRouter {
 
   popMessage(request, response) {
     const boardId = request.params['id'];
-    const message = utilities.stripMessageDate(this.requestStack.popRequestForBoard(boardId));
+    const message = this.requestStack.popRequestForBoard(boardId);
     if (!!message) {
-      response.status(200).send(message);
+      response.status(200).send(utilities.stripMessageDate(message));
     } else {
       response.status(204).send();
     }

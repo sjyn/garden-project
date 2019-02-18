@@ -1,1 +1,1 @@
-#define BOARD_ID "bulbasaur"
+#define BOARD_ID "latios"
