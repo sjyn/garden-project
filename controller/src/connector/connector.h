@@ -8,21 +8,27 @@
 #include "../secrets.h"
 #include "./commands.h"
 #include "../printer/printer.h"
+#include "./boards.h"
 
 class Connector {
 private:
     Printer *printer;
+    bool registered;
     void (*turnOnHandler)();
-    const uint16 PORT = 8432;
-    const String HOST = "192.168.86.46";
-    const String ENDPOINT_LOGS = "/logs";
-    const String ENDPOINT_MESSAGES = "/messages";
+    const String ENDPOINT_LOGS = "/arduino/logs";
+    const String ENDPOINT_MESSAGES = "/arduino/messages";
+    const String ENDPOINT_REGISTER = "/arduino/register";
+    const String ENDPOINT_DEREGISTER = "/arduino/deregister";
+
+    void registerBoard();
+    void deregisterBoard();
+    String getEndpointURL(String endpoint);
+    HTTPClient* getRequestClient(String &endpoint);
 public:
-    Connector(void (*turnOnCallback)());
+    explicit Connector(void (*turnOnCallback)());
     ~Connector();
     void checkMessages();
     void flushLog();
 };
-
 
 #endif //CONTROLLER_CONNECTOR_H

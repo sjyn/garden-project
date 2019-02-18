@@ -7,6 +7,16 @@
   "author": "Steven Rosendahl",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pokemon": "^1.2.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "start": "node index.js"
   }
 }
