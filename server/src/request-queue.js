@@ -1,5 +1,3 @@
-const pokemonNamer = require('pokemon');
-
 class RequestStack {
   constructor() {
     this.requestHolder = {};
@@ -16,12 +14,9 @@ class RequestStack {
 
   popRequestForBoard(boardId) {
     const requestQueue = this.requestHolder[boardId];
-    return requestQueue.pop();
-  }
-
-  peekRequestForBoard(boardId) {
-    const requestQueue = this.requestHolder[boardId];
-    return this.requestHolder[boardId][requestQueue.length - 1];
+    if (!!requestQueue) {
+      return requestQueue.pop();
+    }
   }
 
   registerBoard(boardName) {

@@ -1,0 +1,22 @@
+/*noinspection CssUnknownTarget*/
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+body, html {
+  width: auto;
+}
+
+body {
+  padding: 12px !important;
+}
+
+button {
+  font-size: 18px;
+  display: inline;
+  width: 100%;
+  height: 56px;
+  margin: auto;
+}
+
+* {
+  font-family: 'PT Mono', monospace;
+}

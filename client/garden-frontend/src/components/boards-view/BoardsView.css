@@ -1,0 +1,17 @@
+.boards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  padding: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-content {
+    padding: 0;
+  }
+}

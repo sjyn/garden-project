@@ -1,13 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const requestStack = require('./request-queue');
+const logManager = require('./log-manager');
+const utilities = require('./utilities');
 
 class AppRouter {
   constructor() {
     this.requestStack = new requestStack.RequestStack();
+    this.logManager = new logManager.LogManager();
     this.app = express();
     this.app.use(bodyParser.text({type: 'text/html'}));
+    this.app.use(bodyParser.json({type: 'application/json'}));
+    this.app.use(this.corsHandler.bind(this));
     this.setupRoutes();
+
+    // @TODO -- remove this
+    this.requestStack.registerBoard('latios');
+    this.logManager.registerBoard('latios');
+    this.requestStack.registerBoard('latias');
+    this.logManager.registerBoard('latias');
+    this.requestStack.registerBoard('bulbasaur');
+    this.logManager.registerBoard('bulbasaur');
+    this.logManager.appendLogsForBoard('latias','hello world');
+    this.logManager.appendLogsForBoard('latios','goodbye mars');
+  }
+
+  corsHandler(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
   }
 
   setupRoutes() {
@@ -15,11 +36,14 @@ class AppRouter {
     arduinoRouter.post('/register', this.registerBoard.bind(this));
     arduinoRouter.post('/deregister/:id', this.deregisterBoard.bind(this));
     arduinoRouter.get('/messages/:id', this.popMessage.bind(this));
+    arduinoRouter.post('/logs/:id', this.appendLogsForBoard.bind(this));
     this.app.use('/arduino', arduinoRouter);
 
     const frontendRouter = new express.Router();
     frontendRouter.get('/boards', this.getBoards.bind(this));
     frontendRouter.post('/messages/:id', this.createMessage.bind(this));
+    frontendRouter.get('/messages/:id', this.getMessagesForBoard.bind(this));
+    frontendRouter.get('/logs/:id', this.getLogsForBoard.bind(this));
     this.app.use('/client', frontendRouter);
   }
 
@@ -29,6 +53,37 @@ class AppRouter {
 
   stopApplication(callback) {
     this.server.close(callback);
+  }
+
+  getLogsForBoard(request, response) {
+    const boardId = request.params['id'];
+    const logs = this.logManager.getLogsForBoard(boardId);
+    if (logs !== undefined) {
+      response.status(200).send({logs});
+    } else {
+      response.status(404).send();
+    }
+  }
+
+  appendLogsForBoard(request, response) {
+    const boardId = request.params['id'];
+    const logsToAppend = request.body;
+    const appended = this.logManager.appendLogsForBoard(boardId, logsToAppend);
+    if (appended) {
+      response.status(200).send();
+    } else {
+      response.status(404).send();
+    }
+  }
+
+  getMessagesForBoard(request, response) {
+    const boardId = request.params['id'];
+    const messages = this.requestStack.requestHolder[boardId];
+    if (!!messages) {
+      response.status(200).send(JSON.stringify({messages}));
+    } else {
+      response.status(404).send();
+    }
   }
 
   getBoards(request, response) {
@@ -50,7 +105,9 @@ class AppRouter {
 
   // user sends the name of the pokemon for this board
   registerBoard(request, response) {
-    const registered = this.requestStack.registerBoard(request.body);
+    const boardId = request.body;
+    const registered = this.requestStack.registerBoard(boardId);
+    this.logManager.registerBoard(boardId);
     if (registered === true) {
       response.status(200).send(request.body);
     } else {
@@ -60,7 +117,7 @@ class AppRouter {
 
   popMessage(request, response) {
     const boardId = request.params['id'];
-    const message = this.requestStack.popRequestForBoard(boardId);
+    const message = utilities.stripMessageDate(this.requestStack.popRequestForBoard(boardId));
     if (!!message) {
       response.status(200).send(message);
     } else {
@@ -70,7 +127,7 @@ class AppRouter {
 
   createMessage(request, response) {
     const boardId = request.params['id'];
-    const message = request;
+    const message = utilities.formatMessageDate(request.body.message);
     const result = this.requestStack.addMessageForBoard(boardId, message);
     if (result === true) {
       response.status(201).send(message);

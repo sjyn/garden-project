@@ -1,0 +1,41 @@
+.request-button {
+  background-color: darkgreen;
+  color: white;
+}
+
+.refresh-button {
+  background-color: darkslateblue;
+  color: white;
+}
+
+.garden-container {
+  flex-basis: 40%;
+  text-align: center;
+  padding: 24px;
+}
+
+
+.garden-container > h2 {
+  text-align: center;
+}
+
+.garden-container > img {
+  width: 256px;
+  height: 256px;
+}
+
+.pending-messages {
+  text-align: left;
+  height: 150px;
+  overflow-y: scroll;
+  margin-bottom: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  .garden-container {
+    width: 100%;
+    flex-basis: 100%;
+    text-align: center;
+    padding: 0;
+  }
+}
