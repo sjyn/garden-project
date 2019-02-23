@@ -1,0 +1,22 @@
+version: '3'
+services:
+  garden-client:
+    image: kkarczmarczyk/node-yarn
+    ports: 
+      - "3000:3000"
+    entrypoint: tail -F anything
+    volumes: 
+      - ./client-start.sh:/init/client-start.sh
+      - ../client/garden-frontend:/client
+    entrypoint: bash /init/client-start.sh
+    depends_on:
+      - garden-server
+  garden-server:
+    image: kkarczmarczyk/node-yarn
+    ports:
+      - "8432:8432"
+    volumes:
+      - ./server-start.sh:/init/server-start.sh
+      - ../server:/server
+    entrypoint: bash /init/server-start.sh
+
