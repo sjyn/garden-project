@@ -14,7 +14,6 @@ class RequestStack {
 
   popRequestForBoard(boardId) {
     const requestQueue = this.requestHolder[boardId];
-    console.log('requestQueue', requestQueue)
     if (!!requestQueue) {
       return requestQueue.pop();
     }
