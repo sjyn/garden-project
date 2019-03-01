@@ -13,7 +13,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec922180-b3d3-40f1-af0b-2568113a9075" name="Default" comment="" />
+    <list default="true" id="ec922180-b3d3-40f1-af0b-2568113a9075" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connector/connector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/connector/connector.cpp" afterDir="false" />
+    </list>
     <ignored path="platformio.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -34,8 +37,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/connector/connector.cpp">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="370">
               <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+=======
+            <state relative-caret-position="294">
+              <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
             </state>
           </provider>
         </entry>
@@ -227,13 +235,21 @@
       <updated>1435919971910</updated>
       <workItem from="1550287684073" duration="4698000" />
       <workItem from="1550451637355" duration="1160000" />
+<<<<<<< HEAD
       <workItem from="1550458925827" duration="7073000" />
       <workItem from="1550521239666" duration="7167000" />
+=======
+      <workItem from="1550458925827" duration="8744000" />
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="20098000" />
+=======
+    <option name="totallyTimeSpent" value="14602000" />
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -323,7 +339,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/connector/connector.h">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="306">
+=======
+        <state relative-caret-position="195">
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="e#63#83#0" expanded="true" />
@@ -331,15 +351,26 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/connector/boards.h">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="25" selection-start-column="25" selection-end-column="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/uploader.sh">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="136">
           <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
@@ -352,6 +383,10 @@
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="294">
+          <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+>>>>>>> 5f4c926ea0983586c1de73c0782d3f451b6b8115
         </state>
       </provider>
     </entry>
